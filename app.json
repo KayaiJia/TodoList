@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "miniprogram/pages/index/index",
+    "miniprogram/pages/listPage/listPage",
+    "miniprogram/pages/searchPage/searchPage"
+  ],
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "TodoList",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取你的地址显示周围店铺"
+    }
+  },
+  "plugins": {
+    "chooseLocation": {
+      "version": "1.0.9",
+      "provider": "wx76a9a06e5b4e693e"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

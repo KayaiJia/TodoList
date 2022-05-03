@@ -1,0 +1,31 @@
+{
+  "name": "delivery-system",
+  "version": "1.0.0",
+  "description": "软件工程项目",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TOKISAKIKRM/TakeOut.git"
+  },
+  "keywords": [
+    "bzpkq.AAQ7a2in4r*6Xo"
+  ],
+  "author": "kayai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TOKISAKIKRM/TakeOut/issues"
+  },
+  "homepage": "https://github.com/TOKISAKIKRM/TakeOut#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "json5": "^2.2.0",
+    "miniprogram-computed": "^4.2.1",
+    "request": "^2.88.2",
+    "weui-miniprogram": "^1.2.3",
+    "wx-server-sdk": "^2.6.1",
+    "wxapp-router": "^0.1.12"
+  }
+}

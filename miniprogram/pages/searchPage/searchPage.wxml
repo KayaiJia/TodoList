@@ -1,0 +1,59 @@
+<!--miniprogram/pages/searchPage/searchPage.wxml-->
+<view class=" main">
+  <view class="flex flex-wrap">
+    <view class="basis-xl padding-sm radius box-animation title"  wx:for="{{things}}">
+      <view bindtap="showModal" data-index="{{index}}" data-target="Modal" data-id="{{item._id}}">{{item.title}}</view>
+    </view>
+
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content"></view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl ">
+      <view class="radius shadow-warp bg-white margin-top">
+        <view class="padding bg-white">
+          <view class="flex flex-wrap">
+            <view class="flex justify-start">
+              <view class="padding-sm margin-xs radius">
+                <checkbox />
+              </view>
+              <view class="padding-sm margin-xs things_title">
+                <!-- {{thingName}} -->
+                <input model:value="{{thingName}}" placeholder="标题"/>
+              </view>
+            </view>
+            <view class="basis-df margin-xs radius things_remark">
+              <!-- {{remark}} -->
+              <input model:value="{{remark}}" placeholder="备注"/>
+            </view>
+            <view class="flex justify-end">
+              <view class="radius things_icon_view">
+                <date-time-picker bind:change="handleChange" class="date">
+                  <image src="icon/date.png" class="things_icon"></image>
+                </date-time-picker>
+              </view>
+              <view class="radius things_icon_view" bindtap="showModal1" data-target="viewModal">
+                <image src="icon/list.png" class="things_icon"></image>
+              </view>
+              <view class="radius things_icon_view">
+                <image src="icon/due.png" class="things_icon"></image>
+              </view>
+              <view class="radius things_icon_view">
+                <image src="icon/delete.png" class="things_icon"></image>
+              </view>
+            </view>
+            <view class="submit" bindtap="submitThing">存储</view>
+            <view class="submit" bindtap="del" style="margin-left: 10px;background-color: red;">删除</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

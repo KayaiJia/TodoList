@@ -1,0 +1,129 @@
+<!--miniprogram/pages/listPage/listPage.wxml-->
+
+<!-- <image src="icon/arrow-left-line.png" class="main_icon"></image> -->
+
+<view class="flex  margin-bottom-sm mb-sm list">
+  <view class="flex-sub  list-icon">
+    <image src="icon/{{img}}.png" class="list-img"></image>
+  </view>
+  <view class="flex-twice   list-name">{{listName}}</view>
+  <text class="cuIcon-deletefill lg text-gray" bindtap="delProject" wx:if="{{list == 5 }}" data-name="{{listName}}" ></text>
+  <view class="flex-treble list-number">{{listCount.inbox}}</view>
+</view>
+
+<view class=" main">
+  <view class="flex flex-wrap">
+    <view class="basis-xl padding-sm radius box-animation"  wx:for="{{thingList}}">
+      <checkbox class="project-icon" wx:if="{{list == 4 }}" checked="true" disabled="true"/>
+      <checkbox class="project-icon" wx:elif="{{list != 5 }}" bindtap="doneThing" data-index="{{index}}"/>
+      <view bindtap="showModal" data-index="{{index}}" data-target="Modal">{{item.title}}</view>
+    </view>
+
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content"></view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl ">
+      <view class="radius shadow-warp bg-white margin-top">
+        <view class="padding bg-white">
+          <view class="flex flex-wrap">
+            <view class="flex justify-start">
+              <view class="padding-sm margin-xs radius">
+                <checkbox />
+              </view>
+              <view class="padding-sm margin-xs things_title">
+                <!-- {{thingName}} -->
+                <input model:value="{{thingName}}" placeholder="标题"/>
+              </view>
+            </view>
+            <view class="basis-df margin-xs radius things_remark">
+              <!-- {{remark}} -->
+              <input model:value="{{remark}}" placeholder="备注"/>
+            </view>
+            <view class="flex justify-end">
+              <view class="radius things_icon_view">
+                <date-time-picker bind:change="handleChange" class="date">
+                  <image src="icon/date.png" class="things_icon"></image>
+                </date-time-picker>
+              </view>
+              <view class="radius things_icon_view" bindtap="showModal1" data-target="viewModal">
+                <image src="icon/list.png" class="things_icon"></image>
+              </view>
+              <view class="radius things_icon_view">
+                <image src="icon/due.png" class="things_icon"></image>
+              </view>
+              <view class="radius things_icon_view">
+                <image src="icon/delete.png" class="things_icon"></image>
+              </view>
+            </view>
+            <view class="submit" bindtap="submitThing">存储</view>
+            <view class="submit" bindtap="delThing" style="margin-left: 10px;background-color: red;">删除</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="DrawerClose {{modalName1=='viewModal'?'show':''}}" bindtap="hideModal1">
+			<text class="cuIcon-pullright"></text>
+		</view>
+		<scroll-view scroll-y class="DrawerWindow {{modalName1=='viewModal'?'show':''}}">
+			<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+        <view class="cu-item arrow" wx:for="{{projectTitle}}">
+          <view class="content" bindtap="changeList" data-name="{{item.project_name}}" data-type="1">
+						<text class="text-grey">{{item.project_name}}</text>
+					</view>
+        </view>
+
+        <view class="cu-item arrow">
+          <view class="content" bindtap="changeList" data-name="执行清单" data-type="0">
+            <text class="text-grey">执行清单</text>
+					</view>
+        </view>
+
+        <view class="cu-item arrow">
+          <view class="content" bindtap="changeList" data-name="可能清单" data-type="0">
+            <text class="text-grey">可能清单</text>
+					</view>
+        </view>
+
+        <view class="cu-item arrow">
+          <view class="content" bindtap="changeList" data-name="等待清单" data-type="0">
+            <text class="text-grey">等待清单</text>
+					</view>
+        </view>
+			</view>
+		</scroll-view>
+
+<view class="add" bindtap="showAddThing">
+  <image src="icon/添加.png" class="add-icon"></image>
+</view>
+
+<page-container show="{{showAddThings}}" position="top" round="true" close-on-slideDown="true" class="addThing" duration="1000">
+  <view class="addThing-main">
+    <view>
+      <checkbox class="project-icon" model:checked="{{addThingDone}}" />
+      <input placeholder="新建待办事项" auto-focus model:value="{{addThingName}}" class="addThing-title"  bindinput="inputEdit"/>
+      <input placeholder="备注" model:value="{{addThingNote}}" class="addThing-note"  />
+
+      <view class="addThing-icon">
+        <date-time-picker bind:change="handleChange" class="date"><image src="icon/date.png" class="addThing-icon-img"></image></date-time-picker>
+        <!-- <image src="icon/tag.png" class="addThing-icon-img"></image> -->
+        <!-- <image src="icon/due.png" class="addThing-icon-img"></image> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="addThing-tail flex padding justify-between">
+    <!-- <view class="addThing-tail-title">收集箱</view> -->
+    <view class="submit" bindtap="submitThing1">存储</view>
+  </view>
+</page-container>

@@ -1,0 +1,104 @@
+<view class="search" wx:if="{{showAddThings == false}}">
+  <input class="search-view" placeholder="查找事项" model:value="{{keywords}}" bindblur="search"/>
+    <!-- <input class="cuIcon-{{icon[0].name}} lg text-gray" placeholder=""/> -->
+    <!-- <text class="search-text">查找事项</text> -->
+    <!-- <input placeholder="查找事项"/> -->
+  <!-- </view> -->
+</view>
+
+<view class="flex  p-xs margin-bottom-sm mb-sm list">
+  <view class="flex-sub  list-icon">
+    <image src="icon/收集.png" class="list-img"></image>
+  </view>
+  <view class="flex-twice   list-name" bindtap="toList" data-index="0">收集箱</view>
+  <view class="flex-treble list-number">{{listCount.inbox}}</view>
+</view>
+
+<view class="flex  p-xs margin-bottom-sm mb-sm list">
+  <view class="flex-sub  list-icon">
+    <image src="icon/执行.png" class="list-img"></image>
+  </view>
+  <view class="flex-twice   list-name" bindtap="toList" data-index="1">执行清单</view>
+  <view class="flex-treble list-number">{{listCount.todo}}</view>
+</view>
+
+<view class="flex  p-xs margin-bottom-sm mb-sm list">
+  <view class="flex-sub  list-icon">
+    <image src="icon/等待.png" class="list-img"></image>
+  </view>
+  <view class="flex-twice   list-name" bindtap="toList" data-index="2">等待清单</view>
+  <view class="flex-treble list-number">{{listCount.wait}}</view>
+</view>
+
+<view class="flex  p-xs margin-bottom-sm mb-sm list">
+  <view class="flex-sub  list-icon">
+    <image src="icon/可能.png" class="list-img"></image>
+  </view>
+  <view class="flex-twice   list-name" bindtap="toList" data-index="3">可能清单</view>
+  <view class="flex-treble list-number">{{listCount.maybe}}</view>
+</view>
+
+<view class="flex  p-xs margin-bottom-sm mb-sm list">
+  <view class="flex-sub  list-icon">
+    <image src="icon/完成.png" class="list-img"></image>
+  </view>
+  <view class="flex-twice   list-name" bindtap="toList" data-index="4">已完成</view>
+  <view class="flex-treble list-number">{{listCount.done}}</view>
+</view>
+
+<label wx:for="{{projectTitle}}" class="project">
+  <!-- <checkbox class="project-icon" /> -->
+  <view class="project-name" bindtap="toList" data-index="{{index+5}}" data-name="{{item.project_name}}">{{item.project_name}}</view>
+</label>
+
+<view wx:if="{{showAddProject}}" style="margin-left: 20px;">
+项目名称: <input model:value="{{addProjectName}}" focus="true"/>
+<view class="submit" bindtap="submitProject">存储</view>
+<view class="submit" bindtap="hideProject" style="margin-top: 5px;">取消</view>
+</view>
+
+<view class="add" bindtap="showAdd">
+  <image src="icon/添加.png" class="add-icon"></image>
+</view>
+
+<view class="addList" wx:if="{{addList}}">
+  <view class="addList-back" bindtap="hideAdd"></view>
+  <view class="addList-main">
+    <view class="addList-list" bindtap="showAddThing">
+      <view class="addList-title">新建待办事项</view>
+      <view class="addList-describe">向收集箱添加待办事项</view>
+    </view>
+
+    <view class="addList-list" bindtap="showAddProject">
+      <view class="addList-title">新建项目</view>
+      <view class="addList-describe">设定一个目标，并拆分成多个待办事项</view>
+    </view>
+
+    <!-- <view class="addList-list">
+      <view class="addList-title">新建区域</view>
+      <view class="addList-describe">根据群组对项目和待办事项进行分类</view>
+    </view> -->
+  </view>
+</view>
+
+<page-container show="{{showAddThings}}" position="top" round="true" close-on-slideDown="true" class="addThing" duration="1000">
+  <view class="addThing-main">
+    <view>
+      <checkbox class="project-icon" model:checked="{{addThingDone}}" />
+      <input placeholder="新建待办事项" auto-focus model:value="{{addThingName}}" class="addThing-title"  bindinput="inputEdit"/>
+      <input placeholder="备注" model:value="{{addThingNote}}" class="addThing-note"  />
+
+      <view class="addThing-icon">
+        <date-time-picker bind:change="handleChange" class="date"><image src="icon/date.png" class="addThing-icon-img"></image></date-time-picker>
+        <!-- <image src="icon/tag.png" class="addThing-icon-img"></image> -->
+        <!-- <image src="icon/due.png" class="addThing-icon-img"></image> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="addThing-tail flex padding justify-between">
+    <view class="addThing-tail-title">收集箱</view>
+    <view class="submit" bindtap="submitThing">存储</view>
+  </view>
+</page-container>
+

@@ -1,0 +1,204 @@
+/**index.wxss**/
+@import "../../../main.wxss";
+
+page {
+  background-color: #ffffff;
+}
+
+.search {
+  width: 320px;
+  height: 35px;
+  margin: 35px auto;
+}
+
+.search-view {
+  width: 320px;
+  height: 35px;
+  border-radius: 5px;
+  background: #D8D8D8;
+  text-align: center;
+  line-height: 35px;
+}
+
+.search-text {
+  width: 62px;
+  height: 24px;
+  font-family: SourceHanSansCN-Regular;
+  font-size: 15px;
+  font-weight: normal;
+  letter-spacing: 0em;
+  color: #9E9E9E;
+}
+
+.list {
+  width: 296px;
+  height: 40px;
+  margin: 0 auto;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+
+.list-img {
+  width: 40px;
+  height: 40px;
+}
+
+.list-name {
+  width: 54px;
+  height: 26px;
+  font-family: SourceHanSansCN-Bold;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0em;
+  color: #231919;
+  margin-left: 15px;
+}
+
+.list-number {
+  width: 172px;
+  height: 26px;
+  font-family: SourceHanSansCN-Bold;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+  letter-spacing: 0em;
+  color: #231919;
+}
+
+.project {
+  width: 288px;
+  height: 46px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  line-height: 46px;
+}
+
+.project-icon {
+  width: 25px;
+  float: left;
+  margin-right: 15px;
+}
+
+.project-name {
+  height: 26px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #231919;
+}
+
+.project-split {
+  width: 281px;
+  height: 1px;
+  margin: 0 auto;
+}
+
+.add {
+  position: absolute;
+  display: block;
+  bottom: 50px;
+  right: 48px !important;
+  right: 18px;
+}
+
+.add-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.addList{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  left: 50%; 
+  top: 100%;
+  transform: translate(-50%,-100%);
+}
+
+.addList-back{
+  background-color:rgba(201, 201, 201, 30%);
+  height: 100%;
+}
+
+.addList-main{
+  width: 90%;
+  background-color:rgb(39, 45, 52);
+  position: absolute;
+  display: block;
+  left: 50%; 
+  top: 85%;
+  transform: translate(-50%,-40%);
+  border-radius: 5px;
+}
+
+.addList-title{
+  color:white;
+  margin: 10px 50px;
+  margin-bottom: 0px;
+  font-size: 18px;
+}
+
+.addList-describe{
+  color: rgb(88, 94, 101);
+  margin-left: 50px;
+  margin-bottom: 5px;
+}
+
+.addThing{
+  margin: 100px auto;
+  width: 300px;
+  height: 150px;
+}
+
+.addThing-main{
+  margin: 50px auto;
+  width: 300px;
+  height: 100px;
+}
+
+.addThing-title{
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.addThing-note{
+  font-size: 14px;
+  margin-left: 40px;
+}
+
+.addThing-icon{
+  float: right; 
+}
+
+.addThing-icon-img{
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  margin-top: 50px;
+}
+
+.addThing-tail{
+  background-color: rgb(241, 244, 245);
+  color: rgb(147, 153, 160);
+  height: 60px;
+}
+
+.addThing-tail-title{
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.submit{
+  background-color: rgb(80, 156, 254);
+  text-align: center;
+  color: white;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+}
+
+.date{
+  /* border: 1px red solid; */
+  float: left;
+}
