@@ -21,24 +21,31 @@ const isLeapYear = function(year) {
 };
 const now = new Date();
 const years = [];
-const beginYear = 2020;
-for (var i = beginYear; i <= now.getFullYear(); i++) {
+//kayai:原数据2020
+const beginYear = now.getFullYear();
+
+//kayai:此处修改了符号
+for (var i = beginYear; i <= now.getFullYear()+3; i++) {
   years.push(i + "年");
 }
 const months = [];
-for (var i = 0; i < 12; i++) {
+//kayai:原数据0
+for (var i = now.getMonth(); i < 12; i++) {
   months.push(leftPad0(i + 1, 2) + "月");
 }
 const days = [];
-for (var i = 0; i < 31; i++) {
+//kayai:原数据0
+for (var i = now.getDate()-1; i < 31; i++) {
   days.push(leftPad0(i + 1, 2) + "日");
 }
 const hours = [];
-for (var i = 0; i < 24; i++) {
+//kayai:0
+for (var i = now.getHours(); i < 24; i++) {
   hours.push(leftPad0(i, 2) + "时");
 }
 const minutes = [];
-for (var i = 0; i < 60; i++) {
+//kayai:0
+for (var i = now.getMinutes(); i < 60; i++) {
   minutes.push(leftPad0(i, 2) + "分");
 }
 Component({

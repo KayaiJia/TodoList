@@ -6,6 +6,8 @@
   <!-- </view> -->
 </view>
 
+
+
 <view class="flex  p-xs margin-bottom-sm mb-sm list">
   <view class="flex-sub  list-icon">
     <image src="icon/收集.png" class="list-img"></image>

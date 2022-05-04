@@ -7,9 +7,10 @@ cloud.init()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   let {title,time,remark} = event
+  console.log(wxContext.OPENID)
   try {
     const result = await cloud.openapi.subscribeMessage.send({
-        "touser": 'wxContext.OPENID',
+        "touser": wxContext.OPENID,
         "templateId" : 'TXI-MQahiffvtlk7OYdAldaCcwG741kv3rZu6huMB_o',
         "lang": 'zh_CN',
         "data": {
@@ -24,7 +25,7 @@ exports.main = async (event, context) => {
           },
         },
       })
-    return result
+    return result.errCode
   } catch (err) {
     return err
   }

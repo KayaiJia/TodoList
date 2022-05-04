@@ -109,6 +109,41 @@ Component({
     },
 
     async submitThing(){
+
+      if (this.data.addThingTime != '') {
+        var that = this;
+        wx.requestSubscribeMessage({
+          tmplIds: ['TXI-MQahiffvtlk7OYdAldaCcwG741kv3rZu6huMB_o'],
+          success(res) {
+            var now_time = new Date().getTime()
+            var end_time = new Date(that.data.addThingTime).getTime()
+            var remark = that.data.addThingNote
+            if (remark === undefined || remark === null || remark === ''){
+              remark = '无'
+            }
+            console.log(remark,that.data.addThingName,that.data.addThingTime)
+            console.log(end_time - now_time)
+            if (now_time < end_time) {
+              
+              that.data.timer = setTimeout(
+                function () {
+                  wx.cloud.callFunction({
+                    name: 'putMessage',
+                    data: {
+                      title: that.data.addThingName,
+                      time: that.data.addThingTime,
+                      remark: remark
+                    }
+                  }).then(res=>console.log('成功',res)).catch(res=>console.log('失败',res))
+                }, end_time - now_time);
+            }
+          },
+          fail(err) {
+            console.log('错误', err)
+          }
+        })
+      }
+
       const res = await wx.cloud.callContainer({
         "config": {
           "env": "prod-2gwzli5a668f1961"
@@ -179,6 +214,8 @@ Component({
     },
     search(){
       router.gotoPage('/search',{keywords:this.data.keywords})
-    }
+    },
+
+    
   }
 })

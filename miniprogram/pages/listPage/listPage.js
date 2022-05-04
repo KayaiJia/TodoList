@@ -88,9 +88,15 @@ Component({
           "method": "GET",
           "data": ""
         })
-        this.setData({
-          thingList: info.data.data.things
-        })
+        if (info.data.data.things != undefined) {
+          this.setData({
+            thingList: info.data.data.things
+          })
+        }else{
+          this.setData({
+            thingList : []
+          })
+        }
       }
       else {
         const info = await wx.cloud.callContainer({
@@ -227,6 +233,41 @@ Component({
       })
     },
     async submitThing1() {
+
+      if (this.data.addThingTime != '') {
+        var that = this;
+        wx.requestSubscribeMessage({
+          tmplIds: ['TXI-MQahiffvtlk7OYdAldaCcwG741kv3rZu6huMB_o'],
+          success(res) {
+            var now_time = new Date().getTime()
+            var end_time = new Date(that.data.addThingTime).getTime()
+            var remark = that.data.remark
+            if (remark === undefined || remark === null || remark === '') {
+              remark = '无'
+            }
+            console.log(remark, that.data.addThingName, that.data.addThingTime)
+            console.log(end_time - now_time)
+            if (now_time < end_time) {
+
+              that.data.timer = setTimeout(
+                function () {
+                  wx.cloud.callFunction({
+                    name: 'putMessage',
+                    data: {
+                      title: that.data.addThingName,
+                      time: that.data.addThingTime,
+                      remark: remark
+                    }
+                  }).then(res => console.log('成功', res)).catch(res => console.log('失败', res))
+                }, end_time - now_time);
+            }
+          },
+          fail(err) {
+            console.log('错误', err)
+          }
+        })
+      }
+
       let itype = -1;
       if (this.data.listId != 5) {
         itype = 0
@@ -269,31 +310,6 @@ Component({
 
       await this.getList()
 
-      if (this.data.addThingTime != '') {
-        wx.requestSubscribeMessage({
-          tmplIds: ['TXI-MQahiffvtlk7OYdAldaCcwG741kv3rZu6huMB_o'],
-          success(res) {
-            var that = this;
-            var now_time = new Date().getTime()
-            var end_time = new Date(this.data.addThingTime).getTime()
-            console.log("now:")
-            if (now_time > end_time) {
-              return;
-            } else {
-              that.data.timer = setTimeout(
-                function () {
-                  console.log('定时器触发')
-                }, end_time = now_time);
-            }
-          },
-          fail(err){
-            console.log('错误',err)
-          }
-        })
-
-      } else {
-        console.log('未进入')
-      }
 
     },
 
